@@ -11,7 +11,7 @@ require 'mina/git'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, 'pasviegas.com'
-set :deploy_to, '/var/www/pasviegas.com/public/liz'
+set :deploy_to, '/var/www/pasviegas.com/'
 set :repository, 'git://github.com/pasviegas/page.git'
 set :branch, 'master'
 
@@ -60,7 +60,7 @@ task :deploy => :environment do
     #invoke :'rails:assets_precompile'
 
     to :launch do
-      #queue 'touch tmp/restart.txt'
+      queue 'rm -rf /var/www/pasviegas.com/public/liz/* && cp -R /var/www/pasviegas.com/current/* /var/www/pasviegas.com/public/liz'
     end
   end
 end
